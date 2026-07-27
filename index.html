@@ -77,9 +77,8 @@
 .sec-n{font-family:var(--mono);font-size:12px;color:var(--accent);font-weight:600}
 .sec-h h3{font-size:19px;margin:0;font-weight:770;letter-spacing:-.01em}
 .sec-lead{color:var(--ink2);font-size:13px;margin:6px 0 18px;max-width:74ch}
-.note{background:var(--surface2);border:1px solid var(--border2);border-left:3px solid var(--accent);border-radius:9px;padding:11px 14px;margin:6px 0 18px;font-size:12.5px;color:var(--ink2);line-height:1.6;max-width:82ch}
-.note b{color:var(--ink);font-weight:700} .note .nlab{display:inline-block;font-size:10px;font-weight:750;letter-spacing:.05em;color:var(--accent);background:var(--accent-soft);padding:1px 7px;border-radius:5px;margin-right:8px;vertical-align:1px}
-.note .conn{color:var(--accent);font-weight:700}
+.note{border-left:2px solid var(--border);padding:1px 0 1px 12px;margin:4px 0 16px;font-size:12.5px;color:var(--ink2);line-height:1.55;max-width:80ch}
+.note b{color:var(--ink);font-weight:700} .note .nlab{display:none} .note .conn{color:var(--ink2);font-weight:600}
 /* 분석 플로우 로드맵 */
 .flow{display:flex;align-items:stretch;gap:0;flex-wrap:wrap;margin:2px 0 6px}
 .flowstep{flex:1;min-width:150px;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:11px 13px;position:relative}
@@ -265,6 +264,7 @@ table.t td{padding:7px 8px;border-bottom:1px solid var(--border2);font-variant-n
     <div class="card"><h4>벤더(브랜드) 마진 기여 <span class="mini">· 매출점유 − GP점유</span></h4><div id="vendor"></div><div class="insight" id="vendor-ins"></div></div>
     <div class="card"><h4>가격대 양극화 · 가심비 vs 프리미엄</h4><p class="cap">가격대별 매출 비중과 성장</p><div id="value"></div><div class="insight" id="value-ins"></div></div>
    </div>
+   <div class="card" style="margin-top:16px"><h4>상품 성과의 함정 · 기획 분절 <span class="mini">· 기획코드로 쪼개진 매출을 동일 제품(parent)으로 통합해 본 성과</span></h4><div id="plan"></div></div>
   </section>
  </div>
 
@@ -310,8 +310,7 @@ table.t td{padding:7px 8px;border-bottom:1px solid var(--border2);font-variant-n
  <div class="panel" data-panel="data">
   <section class="sec">
    <div class="sec-h"><span class="sec-n">데이터</span><h3>상품 마스터 · 성과 원본</h3></div>
-   <p class="sec-lead">뷰티 리테일 데이터의 최대 함정 — <b>기획상품 분절</b>. 동일 제품이 기획(IN&amp;OUT)마다 상품코드가 갈려 매출이 쪼개진다. 먼저 통합 관점으로 보정하고, 원본 마스터를 조회한다.</p>
-   <div class="card" style="margin-bottom:16px"><h4>기획상품 통합 관점 <span class="mini">· 기획코드 분절 → 동일 제품 재통합</span></h4><div id="plan"></div></div>
+   <div class="note">정렬 가능한 상품 원본. <b>기획</b> 표시는 동일 제품이 기획코드로 분절된 SKU — 성과는 <b>육성 탭</b>에서 parent 기준으로 통합해 판단한다.</div>
    <p class="sec-lead" id="data-lead"></p>
    <div class="tblwrap"><table class="t" id="rawtable"></table></div>
   </section>
