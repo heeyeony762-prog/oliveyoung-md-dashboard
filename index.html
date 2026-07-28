@@ -9,7 +9,7 @@
  --ink:#1A1D18; --ink2:#565B52; --muted:#9AA094;
  --accent:#5E8C16; --accent-bright:#9BD84B; --accent-soft:#EEF6DD;
  --derma:#1F9E8F; --inner:#C9711C;
- --pos:#5E8C16; --neg:#E0604A; --neutral:#C3C9BD; --pb:#5E8C16; --nb:#A7ADA1;
+ --pos:#8CC63E; --neg:#F26B6B; --pos-ink:#4e7d16; --neg-ink:#d1483c; --neutral:#C3C9BD; --pb:#5E8C16; --nb:#A7ADA1;
  --shadow:0 1px 2px rgba(30,40,15,.03),0 6px 22px rgba(30,40,15,.05);
  --r:18px; --mono:"SF Mono",ui-monospace,Menlo,Consolas,monospace;
  --sans:"Pretendard","Apple SD Gothic Neo","Malgun Gothic",system-ui,-apple-system,Roboto,sans-serif;
@@ -115,7 +115,7 @@
 .kpi .val small{font-size:13px;font-weight:700;color:var(--ink2)}
 .kpi .foot{display:flex;align-items:center;gap:6px;margin-top:7px;font-size:11.5px;flex-wrap:wrap}
 .chip{font-weight:700;padding:2px 6px;border-radius:6px;font-size:11px}
-.chip.pos{color:#456a0f;background:#eef6dd} .chip.neg{color:#b0432f;background:#fbe8e4} .chip.flat{color:#5f6b62;background:#eef1ea}
+.chip.pos{color:#3f6a12;background:#eef7d8} .chip.neg{color:#c33a2e;background:#fde3e2} .chip.flat{color:#5f6b62;background:#eef1ea}
 .kpi .ctx{color:var(--muted)} .kpi.hl{background:linear-gradient(180deg,#fbf5ec,#fff);border-color:#f0e0c6}
 svg{display:block;max-width:100%;height:auto} text{font-family:var(--sans)}
 .tip{position:fixed;z-index:60;pointer-events:none;opacity:0;transition:opacity .1s;background:#182420;color:#f4f6f2;font-size:12px;padding:7px 10px;border-radius:8px;box-shadow:0 6px 20px rgba(0,0,0,.22);max-width:240px;line-height:1.4}
@@ -137,7 +137,7 @@ table.t td{padding:7px 8px;border-bottom:1px solid var(--border2);font-variant-n
 #promotable .t{max-width:560px}
 #promotable .t th,#promotable .t td{padding:7px 10px}
 .verd{font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px}
-.verd.inc{color:#186b45;background:#e5f3ea}.verd.can{color:#a33a2a;background:#f8e7e2}.verd.neu{color:#5f6b62;background:#eef1ea}
+.verd.inc{color:#3f6a12;background:#eef7d8}.verd.can{color:#c33a2e;background:#fde3e2}.verd.neu{color:#5f6b62;background:#eef1ea}
 .macrodot{display:inline-block;width:7px;height:7px;border-radius:2px;margin-right:6px;vertical-align:middle}
 .sparks{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
 @media(max-width:640px){.sparks{grid-template-columns:1fr 1fr}}
@@ -334,7 +334,7 @@ const P=RAW.P, T=RAW.T, SC=RAW.scale, CH=RAW.chan;
 const $=id=>document.getElementById(id);
 const won=n=>n>=1e8?(n/1e8).toFixed(2)+'억':(n>=1e4?(n/1e4).toFixed(0)+'만':Math.round(n));
 const pct=n=>(n>0?'+':'')+n+'%';
-const C={derma:'#1F9E8F',inner:'#C9711C',pos:'#5E8C16',neg:'#E0604A',pb:'#5E8C16',nb:'#A7ADA1',neutral:'#C3C9BD',
+const C={derma:'#1F9E8F',inner:'#C9711C',pos:'#8CC63E',neg:'#F26B6B',posInk:'#4e7d16',negInk:'#d1483c',pb:'#5E8C16',nb:'#A7ADA1',neutral:'#C3C9BD',
  ink:'#1A1D18',ink2:'#565B52',muted:'#9AA094',grid:'#F2F3EE',border:'#ECEEE8',accent:'#5E8C16'};
 const macroColor=m=>m==='더마'?C.derma:C.inner;
 const lerp=(a,b,t)=>a.map((v,i)=>Math.round(v+(b[i]-v)*t)), hx=a=>'#'+a.map(v=>v.toString(16).padStart(2,'0')).join('');
@@ -522,7 +522,7 @@ function rGmroi(){const d=D.growth_pb.scatter;if(!d.length){$('gmroi').innerHTML
  const smax=Math.max.apply(0,d.map(x=>x.sales))||1,rr=s=>4+Math.sqrt(s/smax)*15;const gm=d.map(x=>x.gmroi).sort((a,b)=>a-b)[Math.floor(d.length/2)];
  let s=svg(W,H);s+='<line x1="'+xs(0)+'" y1="'+t+'" x2="'+xs(0)+'" y2="'+(H-b)+'" stroke="'+C.border+'" stroke-dasharray="4 3"/>';
  s+='<line x1="'+l+'" y1="'+ys(gm)+'" x2="'+(W-r)+'" y2="'+ys(gm)+'" stroke="'+C.border+'" stroke-dasharray="4 3"/>';
- s+='<text x="'+(W-r)+'" y="'+(t+11)+'" text-anchor="end" font-size="10" fill="'+C.pos+'">↗ 성장·고효율</text><text x="'+(l+2)+'" y="'+(H-b-4)+'" font-size="10" fill="'+C.neg+'">↙ 정체·저효율</text>';
+ s+='<text x="'+(W-r)+'" y="'+(t+11)+'" text-anchor="end" font-size="10" fill="'+C.posInk+'">↗ 성장·고효율</text><text x="'+(l+2)+'" y="'+(H-b-4)+'" font-size="10" fill="'+C.negInk+'">↙ 정체·저효율</text>';
  s+='<text x="'+((l+W-r)/2)+'" y="'+(H-4)+'" text-anchor="middle" font-size="10.5" fill="'+C.muted+'">YoY 성장률 →</text><text x="10" y="'+(t+4)+'" font-size="10.5" fill="'+C.muted+'">GMROI</text>';
  [-20,0,20,40,60].forEach(g=>s+='<text x="'+xs(g)+'" y="'+(H-b+13)+'" text-anchor="middle" font-size="9" fill="'+C.muted+'">'+g+'%</text>');
  d.forEach(x=>{const col=macroColor(x.macro),isPB=x.type==='PB';s+='<circle '+tip('<b>'+x.name+'</b><br><span class=k>매출</span> '+won(x.sales)+' · <span class=k>성장</span> '+(x.growth==null?'신규':x.growth+'%')+'<br><span class=k>GMROI</span> '+x.gmroi+' · '+x.type)+' cx="'+xs(x.growth==null?60:x.growth)+'" cy="'+ys(x.gmroi)+'" r="'+rr(x.sales)+'" fill="'+col+'" opacity="'+(isPB?.95:.42)+'" stroke="'+(isPB?'#124a32':'#fff')+'" stroke-width="'+(isPB?1.6:1)+'"/>';});
@@ -532,21 +532,21 @@ function rGmroi(){const d=D.growth_pb.scatter;if(!d.length){$('gmroi').innerHTML
 function rPbnb(){const d=D.growth_pb.pbnb;if(!d.length){$('pbnb').innerHTML='<div class="emptymsg">데이터 없음</div>';return;}
  const W=520,rh=30,top=20,left=94,right=54,H=top+d.length*rh+8;const lo=Math.min.apply(0,d.map(x=>Math.min(x.cat_growth,x.nb_growth==null?0:x.nb_growth))),hi=Math.max.apply(0,d.map(x=>x.cat_growth)),sx=v=>left+((v-lo)/((hi-lo)||1))*(W-left-right);
  let s=svg(W,H);s+='<line x1="'+sx(0)+'" y1="'+top+'" x2="'+sx(0)+'" y2="'+(H-6)+'" stroke="'+C.border+'" stroke-dasharray="4 3"/>';
- d.forEach((x,i)=>{const y=top+i*rh+rh/2,nb=x.nb_growth==null?x.cat_growth:x.nb_growth,vcol=x.verdict==='증분'?C.pos:(x.verdict==='잠식'?C.neg:C.neutral);
+ d.forEach((x,i)=>{const y=top+i*rh+rh/2,nb=x.nb_growth==null?x.cat_growth:x.nb_growth,vcol=x.verdict==='증분'?C.pos:(x.verdict==='잠식'?C.neg:C.neutral),vcolInk=x.verdict==='증분'?C.posInk:(x.verdict==='잠식'?C.negInk:C.muted);
   s+='<text x="'+(left-10)+'" y="'+(y+4)+'" text-anchor="end" font-size="11.5" fill="'+C.ink+'" font-weight="600">'+x.cat+'</text>';
   s+='<line x1="'+sx(nb)+'" y1="'+y+'" x2="'+sx(x.cat_growth)+'" y2="'+y+'" stroke="'+vcol+'" stroke-width="2" opacity=".5"/>';
   s+='<circle '+tip('<b>'+x.cat+'</b> NB 성장 '+nb+'%')+' cx="'+sx(nb)+'" cy="'+y+'" r="5" fill="#fff" stroke="'+C.nb+'" stroke-width="2"/>';
   s+='<circle '+tip('<b>'+x.cat+'</b> 카테고리 '+x.cat_growth+'% · PB비중 '+x.pb_share+'%')+' cx="'+sx(x.cat_growth)+'" cy="'+y+'" r="5.5" fill="'+vcol+'"/>';
-  s+='<text x="'+(W-right+8)+'" y="'+(y+4)+'" font-size="10.5" font-weight="700" fill="'+vcol+'">'+x.verdict+'</text>';});
+  s+='<text x="'+(W-right+8)+'" y="'+(y+4)+'" font-size="10.5" font-weight="700" fill="'+vcolInk+'">'+x.verdict+'</text>';});
  s+='</svg>';$('pbnb').innerHTML=s+'<div class="leg"><span><i class="dot" style="background:#fff;border:2px solid '+C.nb+'"></i>NB 성장</span><span><i class="dot" style="background:'+C.pos+'"></i>카테고리 성장</span></div>';
 }
 function rVendor(){const d=D.vendor.list;if(!d.length){$('vendor').innerHTML='<div class="emptymsg">데이터 없음</div>';$('vendor-ins').innerHTML='';return;}
  const mg=Math.max.apply(0,d.map(x=>Math.abs(x.gap)))||1;
- $('vendor').innerHTML='<div class="rowlist">'+d.map(x=>{const reneg=x.gap>0,col=reneg?C.neg:C.pos,w=Math.abs(x.gap)/mg*48;
+ $('vendor').innerHTML='<div class="rowlist">'+d.map(x=>{const reneg=x.gap>0,col=reneg?C.neg:C.pos,colInk=reneg?C.negInk:C.posInk,w=Math.abs(x.gap)/mg*48;
   return '<div class="brow" style="grid-template-columns:82px 1fr 48px" '+tip('<b>'+x.brand+'</b> ('+x.type+')<br><span class=k>매출점유</span> '+x.sales_share+'% vs <span class=k>GP점유</span> '+x.gp_share+'%<br><span class=k>마진율</span> '+x.margin_rate+'%')+'>'+
    '<div class="nm">'+x.brand+'</div>'+
    '<div style="position:relative;height:15px;background:var(--border2);border-radius:5px"><div style="position:absolute;left:50%;top:-2px;bottom:-2px;width:1px;background:var(--border)"></div><div style="position:absolute;top:2px;bottom:2px;'+(reneg?'left:50%':'right:50%')+';width:'+w+'%;background:'+col+';border-radius:3px"></div></div>'+
-   '<div class="vv" style="color:'+col+';text-align:right;font-size:11.5px">'+x.margin_rate+'%</div></div>';}).join('')+'</div>'+
+   '<div class="vv" style="color:'+colInk+';text-align:right;font-size:11.5px">'+x.margin_rate+'%</div></div>';}).join('')+'</div>'+
   '<div class="leg"><span><i class="dot" style="background:'+C.neg+'"></i>매출&gt;GP·저마진(재협상)</span><span><i class="dot" style="background:'+C.pos+'"></i>GP&gt;매출·고마진(확대)</span></div>';
  $('vendor-ins').innerHTML='매출 비중보다 GP 비중이 낮은 저마진 벤더가 <b>매입 재협상</b> 1순위다. PB는 마진이 높은 편이라 오히려 비중을 늘릴 카드다.';
 }
@@ -559,7 +559,7 @@ const GAPLAB={'PB':'PB공백','축':'축 얇음','구색':'구색 얕음','신�
 function rRadar(){const d=STATIC.trend_radar.slice().sort((a,b)=>b.growth-a.growth);const W=600,rh=27,top=8,left=148,right=76,H=top+d.length*rh+6,max=Math.max.apply(0,d.map(x=>x.growth)),sx=v=>left+(v/max)*(W-left-right);
  let s=svg(W,H);d.forEach((x,i)=>{const y=top+i*rh+rh/2,col=macroColor(x.macro),cov=!x.gap;
   s+='<line x1="'+left+'" y1="'+y+'" x2="'+sx(x.growth)+'" y2="'+y+'" stroke="'+col+'" stroke-width="2" opacity="'+(cov?.9:.5)+'"/><circle '+tip('<b>'+x.kw+'</b> ('+x.cat+')<br><span class=k>관심 지수</span> '+x.idx+' · +'+x.growth+'%<br>'+x.note)+' cx="'+sx(x.growth)+'" cy="'+y+'" r="6" fill="'+(cov?col:'#fff')+'" stroke="'+col+'" stroke-width="2"/>'+
-   '<text x="'+(left-8)+'" y="'+(y+4)+'" text-anchor="end" font-size="12" fill="'+C.ink+'" font-weight="600">'+x.kw+'</text><text x="'+(sx(x.growth)+11)+'" y="'+(y+4)+'" font-size="11.5" fill="'+C.ink2+'" font-weight="700">+'+x.growth+'%'+(x.gap?' <tspan fill="'+C.neg+'">'+GAPLAB[x.gap]+'</tspan>':'')+'</text>';});
+   '<text x="'+(left-8)+'" y="'+(y+4)+'" text-anchor="end" font-size="12" fill="'+C.ink+'" font-weight="600">'+x.kw+'</text><text x="'+(sx(x.growth)+11)+'" y="'+(y+4)+'" font-size="11.5" fill="'+C.ink2+'" font-weight="700">+'+x.growth+'%'+(x.gap?' <tspan fill="'+C.negInk+'">'+GAPLAB[x.gap]+'</tspan>':'')+'</text>';});
  s+='</svg>';$('radar').innerHTML=s;const ng=d.filter(x=>x.gap).length;$('radar-ins').innerHTML='뜨는 성분은 OY에 대부분 있다. 관건은 <b>우리 대응 공백</b> — '+ng+'개가 <b>자체 PB 없음·핵심 축 얕음</b> 상태다(PDRN·NMN·엑소좀·트라넥삼산 등). \"없다\"가 아니라 PB로 내재화할 자리.';
 }
 function rIndie(){const d=STATIC.discovery.indie.slice(0,7);const max=Math.max.apply(0,d.map(x=>x.cross))||1;
@@ -579,7 +579,7 @@ function rSparks(){const d=STATIC.discovery.newproduct;
 function rWsgrid(){const g=STATIC.whitespace.grid.slice().sort((a,b)=>a.macro<b.macro?-1:1),bands=STATIC.whitespace.bands,left=96,top=42,cw=92,ch=30,W=left+bands.length*cw+8,H=top+g.length*ch+8,maxn=Math.max.apply(0,g.flatMap(r=>r.cells.map(c=>c.n)));
  let s=svg(W,H);bands.forEach((b,j)=>s+='<text x="'+(left+j*cw+cw/2)+'" y="'+(top-14)+'" text-anchor="middle" font-size="10.5" fill="'+C.ink2+'">'+b+'</text>');
  g.forEach((r,i)=>{const y=top+i*ch;s+='<circle cx="'+(left-84)+'" cy="'+(y+ch/2)+'" r="3.5" fill="'+macroColor(r.macro)+'"/><text x="'+(left-74)+'" y="'+(y+ch/2+4)+'" font-size="11" fill="'+C.ink+'" font-weight="600">'+r.cat+'</text>';
-  r.cells.forEach((c,j)=>{const x=left+j*cw,empty=c.n===0,bg=empty?'#fff':tealScale(c.n/maxn*0.9+0.1);s+='<rect '+tip('<b>'+r.cat+'</b> · '+c.band+'<br><span class=k>SKU</span> '+c.n+(empty?' — 구색 공백':''))+' x="'+(x+2)+'" y="'+(y+2)+'" width="'+(cw-4)+'" height="'+(ch-4)+'" rx="5" fill="'+bg+'" '+(empty?'stroke="'+C.neg+'" stroke-dasharray="3 2" stroke-width="1.2"':'')+'/><text x="'+(x+cw/2)+'" y="'+(y+ch/2+4)+'" text-anchor="middle" font-size="11" font-weight="700" fill="'+(empty?C.neg:(c.n/maxn>0.55?'#fff':C.ink2))+'">'+(empty?'–':c.n)+'</text>';});});
+  r.cells.forEach((c,j)=>{const x=left+j*cw,empty=c.n===0,bg=empty?'#fff':tealScale(c.n/maxn*0.9+0.1);s+='<rect '+tip('<b>'+r.cat+'</b> · '+c.band+'<br><span class=k>SKU</span> '+c.n+(empty?' — 구색 공백':''))+' x="'+(x+2)+'" y="'+(y+2)+'" width="'+(cw-4)+'" height="'+(ch-4)+'" rx="5" fill="'+bg+'" '+(empty?'stroke="'+C.neg+'" stroke-dasharray="3 2" stroke-width="1.2"':'')+'/><text x="'+(x+cw/2)+'" y="'+(y+ch/2+4)+'" text-anchor="middle" font-size="11" font-weight="700" fill="'+(empty?C.negInk:(c.n/maxn>0.55?'#fff':C.ink2))+'">'+(empty?'–':c.n)+'</text>';});});
  s+='</svg>';$('wsgrid').innerHTML=s;
 }
 function rGaps(){const d=STATIC.whitespace.gaps;$('gaps').innerHTML='<div class="rowlist">'+d.map(x=>'<div style="display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:1px solid var(--border2)"><span class="macrodot" style="width:8px;height:8px;margin-top:5px;background:'+macroColor(x.macro)+'"></span><div style="flex:1"><div style="font-weight:650;font-size:13px">'+x.kw+' <span class="flagchip">+'+x.growth+'%</span> <span class="chip '+(x.gap==='PB'?'neg':'flat')+'" style="font-size:10px">'+(GAPLAB[x.gap]||x.gap)+'</span></div><div class="mini" style="margin-top:2px">'+x.note+'</div></div></div>').join('')+'</div><div class="rx" style="margin-top:12px;font-size:12px">성분은 OY에 이미 있다. 우리 과제는 <b>PB 내재화</b> — NMN·엑소좀·트라넥삼산은 NB만 있고 자체 PB가 없다. PDRN은 선케어엔 있지만 더마 앰플·이너 축이 얇다. 여기가 <b>PB 침투율(현 10%)을 올릴 자리</b>다.</div>';
@@ -594,11 +594,11 @@ function rSeasonGuide(){const M=['1','2','3','4','5','6','7','8','9','10','11','
  const rows=[{lab:'더마 · 진정·미백',col:C.derma,peak:[9,10],pre:8,when:'환절기'},{lab:'이너뷰티 · 콜라겐·수면',col:C.inner,peak:[11,12],pre:10,when:'연말'}];
  const strip=r=>'<div style="margin-bottom:13px"><div style="font-size:11.5px;font-weight:700;color:'+r.col+';margin-bottom:6px">'+r.lab+'</div>'+
    '<div style="display:flex;gap:2px">'+M.map((m,i)=>{const mo=i+1,pk=r.peak.includes(mo),pre=mo===r.pre;
-     return '<div style="flex:1;text-align:center"><div style="font-size:8px;height:11px;color:'+C.pos+';font-weight:700">'+(pre?'선발주':'')+'</div><div style="height:17px;border-radius:3px;background:'+(pk?r.col:'var(--border2)')+';position:relative">'+(pre?'<div style="position:absolute;left:50%;top:2px;bottom:2px;transform:translateX(-50%);width:0;border-left:2px dashed '+C.pos+'"></div>':'')+'</div><div style="font-size:8.5px;margin-top:2px;font-weight:'+(pk?'700':'400')+';color:'+(pk?r.col:'var(--muted)')+'">'+m+'</div></div>';}).join('')+'</div>'+
-   '<div style="font-size:10.5px;color:var(--muted);margin-top:4px"><b style="color:'+r.col+'">'+r.peak.join('~')+'월</b> 피크('+r.when+') · <b style="color:'+C.pos+'">'+r.pre+'월</b>경 선발주(6~8주 전)</div></div>';
+     return '<div style="flex:1;text-align:center"><div style="font-size:8px;height:11px;color:'+C.posInk+';font-weight:700">'+(pre?'선발주':'')+'</div><div style="height:17px;border-radius:3px;background:'+(pk?r.col:'var(--border2)')+';position:relative">'+(pre?'<div style="position:absolute;left:50%;top:2px;bottom:2px;transform:translateX(-50%);width:0;border-left:2px dashed '+C.pos+'"></div>':'')+'</div><div style="font-size:8.5px;margin-top:2px;font-weight:'+(pk?'700':'400')+';color:'+(pk?r.col:'var(--muted)')+'">'+m+'</div></div>';}).join('')+'</div>'+
+   '<div style="font-size:10.5px;color:var(--muted);margin-top:4px"><b style="color:'+r.col+'">'+r.peak.join('~')+'월</b> 피크('+r.when+') · <b style="color:'+C.posInk+'">'+r.pre+'월</b>경 선발주(6~8주 전)</div></div>';
  const box=(bd,tag,tagcol,txt)=>'<div style="display:flex;gap:9px;align-items:center;'+bd+';border-radius:9px;padding:9px 11px;margin-top:8px"><span style="font-size:11px;font-weight:800;color:'+tagcol+';white-space:nowrap">'+tag+'</span><span style="font-size:11.5px;color:var(--ink2);line-height:1.4">'+txt+'</span></div>';
  $('season-guide').innerHTML='<div style="font-size:12.5px;font-weight:730;margin-bottom:11px">발주 액션 가이드</div>'+strip(rows[0])+strip(rows[1])+
-   box('background:#e5f3ea','▲ 피크',C.pos,'6~8주 전 <b>선제 발주</b> → 품절(Lost Sales) 방지')+
+   box('background:#eef7d8','▲ 피크',C.posInk,'6~8주 전 <b>선제 발주</b> → 품절(Lost Sales) 방지')+
    box('background:var(--surface2);border:1px solid var(--border2)','▼ 비수기','#8A968E','매대·재고 <b>축소</b> → <b>GMROI 방어</b>');
 }
 function rPromo(){const pick=['스트레스·수면','장벽케어','진정·트러블','유산균·장케어'],cats=STATIC.promo.categories.filter(c=>pick.includes(c.cat)),pal=['#CC5A44','#C9711C','#1F9E8F','#1E7A52'],W=520,H=250,l=38,r=14,t=12,b=30,xs=dd=>l+(dd/40)*(W-l-r),ys=v=>H-b-((v-45)/(105-45))*(H-t-b);
@@ -616,7 +616,7 @@ function rPromo(){const pick=['스트레스·수면','장벽케어','진정·트
 function rRaw(){const d=(D.rawrows||[]).slice().sort((a,b)=>b.sales-a.sales);
  $('data-lead').innerHTML='현재 필터 기준 상품 '+d.length+'종 · 표본매출(24–25)순 · 절대액은 카테고리 규모 환산치 · <b>기획</b>=동일 제품의 기획코드 분절';
  let h='<thead><tr><th>상품</th><th>브랜드</th><th>구분</th><th>매크로</th><th>카테고리</th><th>기획</th><th>매출</th><th>마진율</th><th>GMROI</th><th>YoY</th></tr></thead><tbody>';
- d.forEach(x=>h+='<tr><td>'+x.name+'</td><td>'+x.brand+'</td><td>'+x.type+'</td><td><span class="macrodot" style="background:'+macroColor(x.macro)+'"></span>'+x.macro+'</td><td>'+x.cat+'</td><td>'+(x.plan?'<span class="flagchip">기획</span>':'<span class="mini">–</span>')+'</td><td>'+won(x.sales)+'</td><td>'+x.margin_rate+'%</td><td>'+x.gmroi+'</td><td style="color:'+(x.growth==null?C.muted:(x.growth>=0?C.pos:C.neg))+'">'+(x.growth==null?(x.plan?'기획분절':'신규'):(x.growth>0?'+':'')+x.growth+'%')+'</td></tr>');
+ d.forEach(x=>h+='<tr><td>'+x.name+'</td><td>'+x.brand+'</td><td>'+x.type+'</td><td><span class="macrodot" style="background:'+macroColor(x.macro)+'"></span>'+x.macro+'</td><td>'+x.cat+'</td><td>'+(x.plan?'<span class="flagchip">기획</span>':'<span class="mini">–</span>')+'</td><td>'+won(x.sales)+'</td><td>'+x.margin_rate+'%</td><td>'+x.gmroi+'</td><td style="color:'+(x.growth==null?C.muted:(x.growth>=0?C.posInk:C.negInk))+'">'+(x.growth==null?(x.plan?'기획분절':'신규'):(x.growth>0?'+':'')+x.growth+'%')+'</td></tr>');
  $('rawtable').innerHTML=h+'</tbody>';
 }
 
@@ -677,7 +677,7 @@ function rActBoard(){
 
 function rPlan(){const d=(STATIC.plan&&STATIC.plan.items)||[];if(!d.length){$('plan').innerHTML='';return;}
  $('plan').innerHTML='<div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr))">'+d.map(x=>{
-  const gcol=x.growth==null?C.muted:(x.growth>0?C.pos:C.neg);
+  const gcol=x.growth==null?C.muted:(x.growth>0?C.posInk:C.negInk);
   const v=x.variants.map(vv=>{const y=vv.y2025>0?'2025':'2024',amt=vv.y2025>0?vv.y2025:vv.y2024;
    return '<div style="display:flex;justify-content:space-between;font-size:11.5px;padding:4px 0;color:var(--ink2);border-bottom:1px dashed var(--border2)"><span>'+vv.label+'</span><span class="tnum">'+y+' · '+won(amt)+'</span></div>';}).join('');
   return '<div style="border:1px solid var(--border2);border-radius:10px;padding:13px 14px">'+
@@ -692,7 +692,7 @@ function rBizGap(){const d=STATIC.biz.gap,mx=Math.max.apply(0,d.map(x=>Math.abs(
   return '<div class="brow" style="grid-template-columns:92px 1fr 122px" '+tip('<b>'+x.cat+'</b><br><span class=k>계획</span> '+won(x.plan)+' · <span class=k>실적</span> '+won(x.actual)+'<br><span class=k>Gap</span> '+x.gap_pct+'% · '+x.cause)+'>'+
    '<div class="nm">'+x.cat+'</div>'+
    '<div style="position:relative;height:15px;background:var(--border2);border-radius:5px"><div style="position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--border)"></div><div style="position:absolute;top:2px;bottom:2px;'+(neg?'right:50%':'left:50%')+';width:'+w+'%;background:'+(neg?C.neg:C.pos)+';border-radius:3px"></div></div>'+
-   '<div class="vv" style="text-align:right"><b style="color:'+(neg?C.neg:C.pos)+'">'+(x.gap_pct>0?'+':'')+x.gap_pct+'%</b> <span class="chip" style="background:'+cc+'22;color:'+cc+';font-size:10px">'+x.cause.replace('(오늘드림)','')+'</span></div></div>';}).join('')+'</div>'+
+   '<div class="vv" style="text-align:right"><b style="color:'+(neg?C.negInk:C.posInk)+'">'+(x.gap_pct>0?'+':'')+x.gap_pct+'%</b> <span class="chip" style="background:'+cc+'22;color:'+cc+';font-size:10px">'+x.cause.replace('(오늘드림)','')+'</span></div></div>';}).join('')+'</div>'+
   '<div class="insight">이너뷰티 전 카테고리가 계획(+'+STATIC.biz.assump.target_g+'%)을 <b>+40%대</b>로 초과 견인. 더마는 전반 미달인데 원인이 <b>프로모션 비용·채널 이동·수요 정체</b>로 갈린다 — 미달분부터 원인별로 대응.</div>';
 }
 function rBizPnl(){const p=STATIC.biz.pnl_total,g1=p.gp-p.promo,g2=g1-p.coupon,g3=g2-p.log;
@@ -703,22 +703,22 @@ function rBizPnl(){const p=STATIC.biz.pnl_total,g1=p.gp-p.promo,g2=g1-p.coupon,g
    '<rect x="'+x1+'" y="'+y+'" width="'+Math.max(2,x2-x1)+'" height="16" rx="4" fill="'+col+'" opacity="'+(neg?.85:1)+'"/>'+
    '<text x="'+(x2+6)+'" y="'+(y+13)+'" font-size="10.5" fill="'+C.ink2+'" font-weight="700">'+(neg?'−':'')+won(neg?(a-b):b)+'</text>';});
  s+='</svg>';const pm=STATIC.biz.pnl_macro;
- $('bizpnl').innerHTML=s+'<div class="leg"><span>공헌이익률 <b style="color:'+C.pos+'">'+p.cm_rate+'%</b></span>'+pm.map(m=>'<span><i class="dot" style="background:'+macroColor(m.macro)+'"></i>'+m.macro+' CM <b>'+m.cm_rate+'%</b></span>').join('')+'</div>'+
+ $('bizpnl').innerHTML=s+'<div class="leg"><span>공헌이익률 <b style="color:'+C.posInk+'">'+p.cm_rate+'%</b></span>'+pm.map(m=>'<span><i class="dot" style="background:'+macroColor(m.macro)+'"></i>'+m.macro+' CM <b>'+m.cm_rate+'%</b></span>').join('')+'</div>'+
   '<div class="insight">GP율 '+p.gp_rate+'%에서 판촉·물류·운영비 차감 후 <b>공헌이익률 '+p.cm_rate+'%</b>. 이너뷰티 CM(<b>'+pm[1].cm_rate+'%</b>)이 더마('+pm[0].cm_rate+'%)보다 높다 — 성장도 수익성도 이너뷰티 쪽.</div>';
 }
 function rBizSale(){const s=STATIC.biz.sale,on=s.on,off=s.off;
  const stat=(t,v,c)=>'<div style="flex:1;text-align:center;padding:2px"><div class="mini">'+t+'</div><div style="font-size:15px;font-weight:800;color:'+(c||C.ink)+'">'+v+'</div></div>';
- let h='<div style="display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap">'+stat('세일 객단가',won(on.aov),C.ink)+stat('정상 객단가',won(off.aov),C.muted)+stat('세일 할인율',on.disc+'%',C.inner)+stat('세일 CM',on.cm_rate+'%',C.neg)+stat('정상 CM',off.cm_rate+'%',C.pos)+'</div>';
+ let h='<div style="display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap">'+stat('세일 객단가',won(on.aov),C.ink)+stat('정상 객단가',won(off.aov),C.muted)+stat('세일 할인율',on.disc+'%',C.inner)+stat('세일 CM',on.cm_rate+'%',C.negInk)+stat('정상 CM',off.cm_rate+'%',C.posInk)+'</div>';
  h+='<table class="t"><thead><tr><th>세일 카테고리</th><th>할인율</th><th>CM율</th><th>판정</th></tr></thead><tbody>';
- s.by_cat.slice(0,6).forEach(x=>{h+='<tr><td><span class="macrodot" style="background:'+macroColor(x.macro)+'"></span>'+x.cat+'</td><td style="text-align:right">'+x.disc+'%</td><td style="text-align:right;color:'+(x.cm_rate<0?C.neg:C.ink2)+'">'+x.cm_rate+'%</td><td style="text-align:right"><span class="verd '+(x.verdict==='실익 확보'?'inc':'can')+'">'+x.verdict+'</span></td></tr>';});
+ s.by_cat.slice(0,6).forEach(x=>{h+='<tr><td><span class="macrodot" style="background:'+macroColor(x.macro)+'"></span>'+x.cat+'</td><td style="text-align:right">'+x.disc+'%</td><td style="text-align:right;color:'+(x.cm_rate<0?C.negInk:C.ink2)+'">'+x.cm_rate+'%</td><td style="text-align:right"><span class="verd '+(x.verdict==='실익 확보'?'inc':'can')+'">'+x.verdict+'</span></td></tr>';});
  h+='</tbody></table>';
- $('bizsale').innerHTML=h+'<div class="insight">세일 객단가('+won(on.aov)+')가 정상('+won(off.aov)+')보다 낮다 — <b>객단가가 아니라 객수 증가</b>. CM율은 '+off.cm_rate+'%→<b style="color:'+C.neg+'">'+on.cm_rate+'%</b>로 급감한다. 세일은 매출이 아니라 <b>손익 이벤트</b> — 할인 깊은데 CM 마이너스인 카테고리는 번들·구성으로 재설계.</div>';
+ $('bizsale').innerHTML=h+'<div class="insight">세일 객단가('+won(on.aov)+')가 정상('+won(off.aov)+')보다 낮다 — <b>객단가가 아니라 객수 증가</b>. CM율은 '+off.cm_rate+'%→<b style="color:'+C.negInk+'">'+on.cm_rate+'%</b>로 급감한다. 세일은 매출이 아니라 <b>손익 이벤트</b> — 할인 깊은데 CM 마이너스인 카테고리는 번들·구성으로 재설계.</div>';
 }
 function rBizSum(){const g=STATIC.biz.gap,p=STATIC.biz.pnl_total,miss=g.filter(x=>x.gap_pct<0),beat=g.filter(x=>x.gap_pct>=0),cs={};
  miss.forEach(x=>cs[x.cause.replace('(오늘드림)','')]=(cs[x.cause.replace('(오늘드림)','')]||0)+1);
  const causeStr=Object.keys(cs).map(k=>k+' '+cs[k]).join(' · ');
- const cards=[['계획대로 가고 있나?','이너뷰티 <b>'+beat.length+'개</b> 카테고리가 계획(+'+STATIC.biz.assump.target_g+'%)을 <b>+40%대</b>로 초과 견인. 더마 <b>'+miss.length+'개</b>는 미달. 전사 공헌이익률 <b>'+p.cm_rate+'%</b>.',C.pos],
-  ['안 되는 곳은 왜?','미달 원인이 갈린다 — <b>'+causeStr+'</b>. 미백·잡티=프로모션 비용, 장벽케어=오늘드림 채널 이동, 진정·클렌징=수요 정체.',C.neg],
+ const cards=[['계획대로 가고 있나?','이너뷰티 <b>'+beat.length+'개</b> 카테고리가 계획(+'+STATIC.biz.assump.target_g+'%)을 <b>+40%대</b>로 초과 견인. 더마 <b>'+miss.length+'개</b>는 미달. 전사 공헌이익률 <b>'+p.cm_rate+'%</b>.',C.posInk],
+  ['안 되는 곳은 왜?','미달 원인이 갈린다 — <b>'+causeStr+'</b>. 미백·잡티=프로모션 비용, 장벽케어=오늘드림 채널 이동, 진정·클렌징=수요 정체.',C.negInk],
   ['그래서 다음 액션은?','① 더마 저CM 카테고리 <b>프로모션 효율 재점검</b>(할인→번들) ② <b>오늘드림 전용 구색·가용재고</b> 대응 ③ 이너뷰티 성장을 <b>PB로 내재화</b>해 공헌이익 방어.',C.accent]];
  $('bizsum').innerHTML=cards.map(c=>'<div style="border-left:3px solid '+c[2]+';padding:8px 0 8px 12px;margin-bottom:12px"><div style="font-size:12.5px;font-weight:750;color:'+c[2]+';margin-bottom:4px">'+c[0]+'</div><div style="font-size:12.5px;color:var(--ink2);line-height:1.55">'+c[1]+'</div></div>').join('');
 }
