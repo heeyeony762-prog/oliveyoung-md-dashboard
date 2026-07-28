@@ -8,7 +8,7 @@
  --bg:#F1F2EF; --surface:#FFFFFF; --surface2:#F7F8F4; --border:#ECEEE8; --border2:#F2F3EE;
  --ink:#1A1D18; --ink2:#565B52; --muted:#9AA094;
  --accent:#5E8C16; --accent-bright:#9BD84B; --accent-soft:#EEF6DD;
- --derma:#1F9E8F; --inner:#C9711C;
+ --derma:#5E8C16; --inner:#8CC63E; --green-mid:#6FA828; --green-lt:#C3E29A;
  --pos:#8CC63E; --neg:#F26B6B; --pos-ink:#4e7d16; --neg-ink:#d1483c; --neutral:#C3C9BD; --pb:#5E8C16; --nb:#A7ADA1;
  --shadow:0 1px 2px rgba(30,40,15,.03),0 6px 22px rgba(30,40,15,.05);
  --r:18px; --mono:"SF Mono",ui-monospace,Menlo,Consolas,monospace;
@@ -47,7 +47,7 @@
 .main{flex:1;min-width:0;padding:20px 42px 0;max-width:none}
 .mainhead{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
 .badge{font-size:11px;padding:4px 9px;border-radius:999px;border:1px solid var(--border);background:var(--surface);color:var(--ink2);white-space:nowrap}
-.badge.warn{color:#8a6d1f;background:#fbf4e2;border-color:#f0e2b8}
+.badge.warn{color:#6b7166;background:#f1f2ef;border-color:#e3e5df}
 .panel{display:none} .panel.on{display:block}
 @media(max-width:860px){
  .app{flex-direction:column}
@@ -67,7 +67,7 @@
 .mainhead{flex:none}
 .eyebrow{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700}
 .hero h2{font-size:28px;line-height:1.18;letter-spacing:-.02em;margin:0 0 .32em;font-weight:800;max-width:none}
-.hero h2 em{font-style:normal;color:var(--inner)} .hero h2 b{font-weight:800;color:var(--derma)}
+.hero h2 em{font-style:normal;color:var(--green-mid)} .hero h2 b{font-weight:800;color:var(--derma)}
 .hero p{color:var(--ink2);font-size:14px;max-width:none;margin:.4em 0 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
 .tag{font-size:12px;padding:6px 11px;border-radius:999px;background:var(--surface);border:1px solid var(--border);color:var(--ink2)}
@@ -96,8 +96,8 @@
 .ev{font-size:11.5px;color:var(--ink2);background:var(--surface2);border:1px solid var(--border2);border-left:3px solid var(--neutral);border-radius:7px;padding:5px 9px;line-height:1.32}
 .ev .evt{font-weight:750;font-size:9.5px;letter-spacing:.03em;display:block;margin-bottom:1px}
 .carr{color:var(--neutral);font-size:15px;font-weight:700;flex:none}
-.ac-eff{font-size:12px;font-weight:700;color:#186b45;background:#e5f3ea;border-radius:7px;padding:5px 10px}
-.spine-flag{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#fff;background:var(--inner);padding:2px 8px;border-radius:6px;transform:translateY(-2px)}
+.ac-eff{font-size:12px;font-weight:700;color:#4e7d16;background:#eef7d8;border-radius:7px;padding:5px 10px}
+.spine-flag{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.05em;color:#fff;background:var(--derma);padding:2px 8px;border-radius:6px;transform:translateY(-2px)}
 .full-tag{font-size:10px;font-weight:600;color:var(--muted);border:1px solid var(--border);border-radius:5px;padding:1px 6px;margin-left:6px}
 .grid{display:grid;gap:16px;align-items:start}
 .g2{grid-template-columns:1fr 1fr} .g23{grid-template-columns:1.35fr 1fr} .g32{grid-template-columns:1fr 1.4fr} .gpromo{grid-template-columns:1.6fr 1fr}
@@ -116,7 +116,7 @@
 .kpi .foot{display:flex;align-items:center;gap:6px;margin-top:7px;font-size:11.5px;flex-wrap:wrap}
 .chip{font-weight:700;padding:2px 6px;border-radius:6px;font-size:11px}
 .chip.pos{color:#3f6a12;background:#eef7d8} .chip.neg{color:#c33a2e;background:#fde3e2} .chip.flat{color:#5f6b62;background:#eef1ea}
-.kpi .ctx{color:var(--muted)} .kpi.hl{background:linear-gradient(180deg,#fbf5ec,#fff);border-color:#f0e0c6}
+.kpi .ctx{color:var(--muted)} .kpi.hl{background:linear-gradient(180deg,#eef7d8,#fff);border-color:#d6e8b0}
 svg{display:block;max-width:100%;height:auto} text{font-family:var(--sans)}
 .tip{position:fixed;z-index:60;pointer-events:none;opacity:0;transition:opacity .1s;background:#182420;color:#f4f6f2;font-size:12px;padding:7px 10px;border-radius:8px;box-shadow:0 6px 20px rgba(0,0,0,.22);max-width:240px;line-height:1.4}
 .tip b{color:#fff}.tip .k{color:#aeb9b1}
@@ -129,7 +129,7 @@ svg{display:block;max-width:100%;height:auto} text{font-family:var(--sans)}
 .bar-t{height:16px;border-radius:5px;background:var(--border2);overflow:hidden;position:relative}
 .bar-f{height:100%;border-radius:5px} .brow .vv{font-variant-numeric:tabular-nums;font-weight:700;white-space:nowrap}
 .mini{font-size:10.5px;color:var(--muted)}
-.flagchip{font-size:10px;font-weight:700;padding:1px 6px;border-radius:5px;background:#fbecdf;color:#a3611b;margin-left:6px}
+.flagchip{font-size:10px;font-weight:700;padding:1px 6px;border-radius:5px;background:#eef7d8;color:#4e7d16;margin-left:6px}
 table.t{width:100%;border-collapse:collapse;font-size:12.5px}
 table.t th{text-align:right;font-weight:600;color:var(--muted);font-size:11px;padding:6px 8px;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--surface)}
 table.t th:first-child,table.t td:first-child{text-align:left}
@@ -180,7 +180,7 @@ table.t td{padding:7px 8px;border-bottom:1px solid var(--border2);font-variant-n
     <h2>바르는 <b>더마</b>에서 먹는 <em>이너뷰티</em>로<br>구매 전이</h2>
     <p>매대·발주 예산 재배분·신규 소싱을 발굴·도입·육성·실행 4단계로 분석·설계.</p>
    </div>
-   <div class="mainhead"><span class="badge" id="statusbadge" style="color:#186b45;background:#e6f2ea;border-color:#c3e0cf"></span><span class="badge warn">가상 데이터</span></div>
+   <div class="mainhead"><span class="badge" id="statusbadge" style="color:#4e7d16;background:#eef7d8;border-color:#d6e8b0"></span><span class="badge warn">가상 데이터</span></div>
   </div>
   <div class="tags">
    <span class="tag">먹는 콜라겐 · <b>안티에이징 확장</b></span>
@@ -334,11 +334,11 @@ const P=RAW.P, T=RAW.T, SC=RAW.scale, CH=RAW.chan;
 const $=id=>document.getElementById(id);
 const won=n=>n>=1e8?(n/1e8).toFixed(2)+'억':(n>=1e4?(n/1e4).toFixed(0)+'만':Math.round(n));
 const pct=n=>(n>0?'+':'')+n+'%';
-const C={derma:'#1F9E8F',inner:'#C9711C',pos:'#8CC63E',neg:'#F26B6B',posInk:'#4e7d16',negInk:'#d1483c',pb:'#5E8C16',nb:'#A7ADA1',neutral:'#C3C9BD',
+const C={derma:'#5E8C16',inner:'#8CC63E',dermaInk:'#4e7d16',innerInk:'#6FA828',greenLt:'#C3E29A',pos:'#8CC63E',neg:'#F26B6B',posInk:'#4e7d16',negInk:'#d1483c',pb:'#5E8C16',nb:'#B7C0B7',neutral:'#C3C9BD',
  ink:'#1A1D18',ink2:'#565B52',muted:'#9AA094',grid:'#F2F3EE',border:'#ECEEE8',accent:'#5E8C16'};
 const macroColor=m=>m==='더마'?C.derma:C.inner;
 const lerp=(a,b,t)=>a.map((v,i)=>Math.round(v+(b[i]-v)*t)), hx=a=>'#'+a.map(v=>v.toString(16).padStart(2,'0')).join('');
-const RAMP=[[234,244,241],[173,220,213],[86,175,161],[20,120,108]];
+const RAMP=[[238,247,216],[195,226,154],[140,198,62],[94,140,22]];
 function tealScale(t){t=Math.max(0,Math.min(1,t));const s=t*(RAMP.length-1),i=Math.floor(s),f=s-i;return hx(lerp(RAMP[i],RAMP[Math.min(i+1,RAMP.length-1)],f));}
 function tip(h){return 'data-tip="'+h.replace(/"/g,'&quot;')+'"';}
 function svg(w,h){return '<svg viewBox="0 0 '+w+' '+h+'" width="'+w+'" height="'+h+'" role="img">';}
@@ -478,14 +478,14 @@ function rKpi(){const k=D.kpi;
 function rRanking(){const d=D.kpi.brand_rank;const max=d[0]?d[0].sales:1;
  $('ranking').innerHTML='<div class="rowlist">'+d.map(x=>{
   const mv=x.delta>0?'<span class="chip pos">▲'+x.delta+'</span>':(x.delta<0?'<span class="chip neg">▼'+Math.abs(x.delta)+'</span>':'<span class="chip flat">–</span>');
-  const ext=x.spans==='both'?'<span class="flagchip">확장</span>':'';const nw=x.rank_prev>=9?' <span class="flagchip" style="background:#e5f3ea;color:#186b45">NEW</span>':'';
+  const ext=x.spans==='both'?'<span class="flagchip">확장</span>':'';const nw=x.rank_prev>=9?' <span class="flagchip" style="background:#eef7d8;color:#4e7d16">NEW</span>':'';
   return '<div class="brow" style="grid-template-columns:20px 138px 1fr auto" '+tip('<b>'+x.brand+'</b> · '+x.rank+'위<br><span class=k>전년</span> '+(x.rank_prev>=9?'권외':x.rank_prev+'위')+' → '+x.rank+'위<br><span class=k>매출</span> '+won(x.sales)+'원')+'>'+
    '<div style="font-family:var(--mono);font-weight:700;color:var(--muted);font-size:12px">'+x.rank+'</div>'+
    '<div class="nm" style="overflow:visible;text-overflow:clip;display:flex;align-items:center;gap:2px">'+x.brand+ext+nw+'</div>'+
    '<div class="bar-t"><div class="bar-f" style="width:'+(x.sales/max*100)+'%;background:var(--accent)"></div></div>'+
    '<div class="vv">'+won(x.sales)+' '+mv+'</div></div>';}).join('')+'</div>';
 }
-function rChannel(){const m=D.channel.mix;const col={'오프라인':'#C3CDC4','온라인몰':'#6FA69B','오늘드림':'#1E7A52'};
+function rChannel(){const m=D.channel.mix;const col={'오프라인':'#C3C9BD','온라인몰':'#8CC63E','오늘드림':'#5E8C16'};
  let bar='<div style="display:flex;height:22px;border-radius:6px;overflow:hidden;margin:2px 0 16px">';
  m.forEach((c,i)=>{bar+='<div '+tip('<b>'+c.ch+'</b><br><span class=k>비중</span> '+c.share+'% (전년 '+c.share_prev+'%)<br><span class=k>매출</span> '+won(c.sales)+' · 성장 '+(c.growth>0?'+':'')+c.growth+'%')+' style="width:'+Math.max(c.share,0.5)+'%;background:'+col[c.ch]+';'+(i<m.length-1?'border-right:2px solid #fff':'')+'"></div>';});
  bar+='</div>';
@@ -601,7 +601,7 @@ function rSeasonGuide(){const M=['1','2','3','4','5','6','7','8','9','10','11','
    box('background:#eef7d8','▲ 피크',C.posInk,'6~8주 전 <b>선제 발주</b> → 품절(Lost Sales) 방지')+
    box('background:var(--surface2);border:1px solid var(--border2)','▼ 비수기','#8A968E','매대·재고 <b>축소</b> → <b>GMROI 방어</b>');
 }
-function rPromo(){const pick=['스트레스·수면','장벽케어','진정·트러블','유산균·장케어'],cats=STATIC.promo.categories.filter(c=>pick.includes(c.cat)),pal=['#CC5A44','#C9711C','#1F9E8F','#1E7A52'],W=520,H=250,l=38,r=14,t=12,b=30,xs=dd=>l+(dd/40)*(W-l-r),ys=v=>H-b-((v-45)/(105-45))*(H-t-b);
+function rPromo(){const pick=['스트레스·수면','장벽케어','진정·트러블','유산균·장케어'],cats=STATIC.promo.categories.filter(c=>pick.includes(c.cat)),pal=['#5E8C16','#8CC63E','#C3E29A','#9AA094'],W=520,H=250,l=38,r=14,t=12,b=30,xs=dd=>l+(dd/40)*(W-l-r),ys=v=>H-b-((v-45)/(105-45))*(H-t-b);
  let s=svg(W,H);[50,70,90,100].forEach(g=>{const y=ys(g);s+='<line x1="'+l+'" y1="'+y+'" x2="'+(W-r)+'" y2="'+y+'" stroke="'+(g===100?C.border:C.grid)+'"'+(g===100?' stroke-dasharray="4 3"':'')+'/><text x="'+(l-5)+'" y="'+(y+3)+'" text-anchor="end" font-size="9" fill="'+C.muted+'">'+g+'</text>';});
  [0,10,20,30,40].forEach(g=>s+='<text x="'+xs(g)+'" y="'+(H-b+13)+'" text-anchor="middle" font-size="9" fill="'+C.muted+'">'+g+'%</text>');
  s+='<text x="'+((l+W-r)/2)+'" y="'+(H-2)+'" text-anchor="middle" font-size="10" fill="'+C.muted+'">할인율 →</text>';
@@ -622,29 +622,29 @@ function rRaw(){const d=(D.rawrows||[]).slice().sort((a,b)=>b.sales-a.sales);
 
 /* ---- 실행: MD 액션 플랜 ---- */
 const ACTIONS=[
- {n:1,type:'협상',col:'#CC5A44',title:'아누아·셀퓨전씨 매입 마진 재협상',impact:'GP율 +1.5%p',pri:1,effort:2,imp:3,
+ {n:1,type:'협상',col:'#5E8C16',title:'아누아·셀퓨전씨 매입 마진 재협상',impact:'GP율 +1.5%p',pri:1,effort:2,imp:3,
   chain:[{t:'육성',m:'벤더 매출점유 > GP점유·저마진 27~28%'},{t:'사업관리',m:'더마 CM 12.7%로 이너(20%)보다 낮음'}]},
- {n:2,type:'구색 OUT',col:'#8A968E',title:'부진재고 소진 기획·단종 판단',impact:'재고 회전↑',pri:1,effort:1,imp:2,
+ {n:2,type:'구색 OUT',col:'#5E8C16',title:'부진재고 소진 기획·단종 판단',impact:'재고 회전↑',pri:1,effort:1,imp:2,
   chain:[{t:'요약',m:'소진율 66%·부진 SKU 다수'},{t:'육성',m:'GMROI 하위 = 재고가 마진 잠식'}]},
- {n:3,type:'번들',col:'#1E7A52',title:'진정+유산균·장벽+콜라겐 크로스 번들',impact:'객단가 +8%',pri:1,effort:2,imp:3,
+ {n:3,type:'번들',col:'#5E8C16',title:'진정+유산균·장벽+콜라겐 크로스 번들',impact:'객단가 +8%',pri:1,effort:2,imp:3,
   chain:[{t:'발굴',m:'유산균·콜라겐 수요 견인(+40%대)'},{t:'스파인',m:'같은 축 대각선 크로스 리프트 2.4×'}]},
- {n:4,type:'소싱·PB',col:'#C9711C',title:'PDRN·NMN 앰플 축 확대 + 자체 PB 개발',impact:'PB 침투율↑·CM↑',pri:2,effort:3,imp:3,
+ {n:4,type:'소싱·PB',col:'#8CC63E',title:'PDRN·NMN 앰플 축 확대 + 자체 PB 개발',impact:'PB 침투율↑·CM↑',pri:2,effort:3,imp:3,
   chain:[{t:'발굴',m:'PDRN +183%·NMN 1위, 자체 PB 없음'},{t:'육성',m:'PB 마진 52~58% vs NB 28~33%'}]},
- {n:5,type:'구색 IN',col:'#1F9E8F',title:'이너뷰티 소용량·가심비 라인 확대',impact:'신규 고객 유입',pri:2,effort:2,imp:2,
+ {n:5,type:'구색 IN',col:'#8CC63E',title:'이너뷰티 소용량·가심비 라인 확대',impact:'신규 고객 유입',pri:2,effort:2,imp:2,
   chain:[{t:'육성',m:'저가·소용량 +18% 양극화'},{t:'발굴',m:'가심비 수요·PB 개발 여지'}]},
- {n:6,type:'채널',col:'#6FA69B',title:'오늘드림 전용 근거리 구색·가용재고',impact:'결품 손실↓',pri:2,effort:2,imp:2,
+ {n:6,type:'채널',col:'#8CC63E',title:'오늘드림 전용 근거리 구색·가용재고',impact:'결품 손실↓',pri:2,effort:2,imp:2,
   chain:[{t:'요약',m:'오늘드림 +55%·비중 급상승'},{t:'사업관리',m:'장벽케어 미달 원인=채널 이동'}]},
- {n:7,type:'육성',col:'#2E9E6B',title:'이너 재구매 높은 인디에 이너 라인 제안',impact:'PB·번들 확장',pri:2,effort:3,imp:2,
+ {n:7,type:'육성',col:'#8CC63E',title:'이너 재구매 높은 인디에 이너 라인 제안',impact:'PB·번들 확장',pri:2,effort:3,imp:2,
   chain:[{t:'발굴',m:'인디 이너뷰티 재구매 79%·이너 라인 없음'},{t:'스파인',m:'더마→이너 전이 경로 확인'}]},
- {n:8,type:'행사',col:'#D69A2E',title:'할인은 진정·미백 등 탄력 카테고리만 선별',impact:'마진 방어',pri:3,effort:1,imp:1,
+ {n:8,type:'행사',col:'#B7DD7E',title:'할인은 진정·미백 등 탄력 카테고리만 선별',impact:'마진 방어',pri:3,effort:1,imp:1,
   chain:[{t:'사업관리',m:'세일 CM 1.1% vs 정상 18.7%'},{t:'근거',m:'손익분기(+43~55%) > 예상반응(+16~22%)'}]},
 ];
-const TABCOL={'발굴':'#C9711C','스파인':'#1E7A52','육성':'#1F9E8F','요약':'#8A968E','사업관리':'#2E9E6B','근거':'#B7C0B7'};
+const TABCOL={'발굴':'#8CC63E','스파인':'#6FA828','육성':'#5E8C16','요약':'#9AA094','사업관리':'#4e7d16','근거':'#B7C0B7'};
 function rActMatrix(){const W=470,H=330,l=48,r=20,t=20,b=40;
  const xs=e=>l+((e-1)/2)*(W-l-r), ys=i=>H-b-((i-1)/2)*(H-t-b);
  let s=svg(W,H);
- s+='<rect x="'+l+'" y="'+t+'" width="'+(xs(1.6)-l)+'" height="'+(ys(2.4)-t)+'" rx="8" fill="#2E9E6B" opacity=".08"/>';
- s+='<text x="'+(l+9)+'" y="'+(t+16)+'" font-size="10.5" fill="#268a5c" font-weight="700">퀵윈</text>';
+ s+='<rect x="'+l+'" y="'+t+'" width="'+(xs(1.6)-l)+'" height="'+(ys(2.4)-t)+'" rx="8" fill="#5E8C16" opacity=".08"/>';
+ s+='<text x="'+(l+9)+'" y="'+(t+16)+'" font-size="10.5" fill="#4e7d16" font-weight="700">퀵윈</text>';
  s+='<line x1="'+xs(2)+'" y1="'+t+'" x2="'+xs(2)+'" y2="'+(H-b)+'" stroke="'+C.border+'" stroke-dasharray="4 3"/>';
  s+='<line x1="'+l+'" y1="'+ys(2)+'" x2="'+(W-r)+'" y2="'+ys(2)+'" stroke="'+C.border+'" stroke-dasharray="4 3"/>';
  s+='<text x="'+((l+W-r)/2)+'" y="'+(H-6)+'" text-anchor="middle" font-size="10.5" fill="'+C.muted+'">실행 난이도 →</text>';
@@ -686,7 +686,7 @@ function rPlan(){const d=(STATIC.plan&&STATIC.plan.items)||[];if(!d.length){$('p
   }).join('')+'</div>'+
   '<div class="insight">기획이 바뀔 때마다 상품코드가 갈려(예: +화장솜 → +30ml 증정) 동일 제품 매출이 연도별로 쪼개진다. raw SKU만 보면 <b>"작년 죽고 올해 신규"</b>로 오독하기 쉽다 — 재기획·발주 예측은 반드시 <b>parent 기준 통합</b>으로 봐야 한다.</div>';
 }
-const CAUSE_COL={'수요 견인':'#2E9E6B','프로모션 비용':'#C9711C','채널 이동(오늘드림)':'#6FA69B','수요 정체':'#CC5A44','구색·재고':'#8A968E'};
+const CAUSE_COL={'수요 견인':'#5E8C16','프로모션 비용':'#9AA094','채널 이동(오늘드림)':'#9AA094','수요 정체':'#F26B6B','구색·재고':'#B7C0B7'};
 function rBizGap(){const d=STATIC.biz.gap,mx=Math.max.apply(0,d.map(x=>Math.abs(x.gap_pct)))||1;
  $('bizgap').innerHTML='<div class="rowlist">'+d.map(x=>{const neg=x.gap_pct<0,w=Math.abs(x.gap_pct)/mx*46,cc=CAUSE_COL[x.cause]||C.neutral;
   return '<div class="brow" style="grid-template-columns:92px 1fr 122px" '+tip('<b>'+x.cat+'</b><br><span class=k>계획</span> '+won(x.plan)+' · <span class=k>실적</span> '+won(x.actual)+'<br><span class=k>Gap</span> '+x.gap_pct+'% · '+x.cause)+'>'+
@@ -708,7 +708,7 @@ function rBizPnl(){const p=STATIC.biz.pnl_total,g1=p.gp-p.promo,g2=g1-p.coupon,g
 }
 function rBizSale(){const s=STATIC.biz.sale,on=s.on,off=s.off;
  const stat=(t,v,c)=>'<div style="flex:1;text-align:center;padding:2px"><div class="mini">'+t+'</div><div style="font-size:15px;font-weight:800;color:'+(c||C.ink)+'">'+v+'</div></div>';
- let h='<div style="display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap">'+stat('세일 객단가',won(on.aov),C.ink)+stat('정상 객단가',won(off.aov),C.muted)+stat('세일 할인율',on.disc+'%',C.inner)+stat('세일 CM',on.cm_rate+'%',C.negInk)+stat('정상 CM',off.cm_rate+'%',C.posInk)+'</div>';
+ let h='<div style="display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap">'+stat('세일 객단가',won(on.aov),C.ink)+stat('정상 객단가',won(off.aov),C.muted)+stat('세일 할인율',on.disc+'%',C.ink2)+stat('세일 CM',on.cm_rate+'%',C.negInk)+stat('정상 CM',off.cm_rate+'%',C.posInk)+'</div>';
  h+='<table class="t"><thead><tr><th>세일 카테고리</th><th>할인율</th><th>CM율</th><th>판정</th></tr></thead><tbody>';
  s.by_cat.slice(0,6).forEach(x=>{h+='<tr><td><span class="macrodot" style="background:'+macroColor(x.macro)+'"></span>'+x.cat+'</td><td style="text-align:right">'+x.disc+'%</td><td style="text-align:right;color:'+(x.cm_rate<0?C.negInk:C.ink2)+'">'+x.cm_rate+'%</td><td style="text-align:right"><span class="verd '+(x.verdict==='실익 확보'?'inc':'can')+'">'+x.verdict+'</span></td></tr>';});
  h+='</tbody></table>';
